@@ -1,0 +1,33 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+@import "@fortawesome/fontawesome-free/css/all.css";
+//functions
+@import'bootstrap/scss/functions';
+// Variables
+@import 'bootstrap/scss/variables';
+
+// Bootstrap
+
+
+
+$theme-colors: (
+  "primary":    $orange-900,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+  
+);
+// Create your own map
+$custom-colors: (
+  "custom-color": $pink-300,
+
+);
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+@import 'bootstrap/scss/bootstrap';

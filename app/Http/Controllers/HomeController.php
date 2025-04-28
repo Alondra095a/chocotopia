@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Producto;
+use App\Models\Chocolate;
+use App\Models\Dulce;
+use App\Models\Especial;
+
+
+
 
 class HomeController extends Controller
 {
@@ -23,6 +30,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        $productos = Producto::whereNull('deleted_at')->get();
+        $chocolates = Chocolate::with('producto')->get();
+        $dulces = Dulce::with('producto')->get();
+        $especiales = Especial::with('producto')->get();
+    
+        return view('home', compact('productos', 'chocolates', 'dulces', 'especiales'));
     }
 }

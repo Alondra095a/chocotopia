@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.barra_dash')
 
 @section('content')
 <div class="container mt-5">
@@ -35,6 +35,11 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="precio" class="form-label fw-bold">Precio</label>
+                    <input type="number" step="0.01" class="form-control shadow-sm" id="precio" name="precio" value="{{ old('precio') }}" required>
+                </div>
+
+                <div class="mb-3">
                     <label for="id_materia" class="form-label fw-bold">Materia Prima</label>
                     <select name="id_materia" id="id_materia" class="form-select shadow-sm" required>
                         <option value="">Seleccione una materia</option>
@@ -59,5 +64,3 @@
     </div>
 </div>
 @endsection
-
-

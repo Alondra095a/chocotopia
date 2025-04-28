@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.barra_dash')
 
 @section('content')
 <div class="container mt-5">
@@ -33,6 +33,11 @@
                 <div class="mb-3">
                     <label for="stock" class="form-label fw-bold">Stock</label>
                     <input type="number" class="form-control shadow-sm" id="stock" name="stock" value="{{ old('stock', $producto->stock) }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="precio" class="form-label fw-bold">Precio</label>
+                    <input type="number" step="0.01" class="form-control shadow-sm" id="precio" name="precio" value="{{ old('precio', $producto->precio) }}" required>
                 </div>
 
                 <div class="mb-3">

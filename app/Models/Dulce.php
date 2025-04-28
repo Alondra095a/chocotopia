@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class Chocolate extends Model
+class Dulce extends Model
 {
     use HasFactory;
-    protected $table = 'chocolates';
-    protected $primaryKey = 'id_chocolate';
+    protected $table = 'dulces';
+    protected $primaryKey = 'id_dulce';
 
     protected $fillable = [
-        'relleno', 
+        'dureza',
+        'colorante',
         'id_producto'
     ];
 

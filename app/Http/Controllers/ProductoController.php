@@ -27,6 +27,7 @@ class ProductoController extends Controller
             'presentacion' => 'nullable|string|max:255',
             'stock' => 'required|integer',
             'id_materia' => 'required|exists:materias,id_materia',
+            'precio' => 'required|numeric|min:0', // ✅ nuevo
         ]);
 
         Producto::create($request->all());
@@ -65,6 +66,7 @@ class ProductoController extends Controller
             'presentacion' => 'nullable|string|max:255',
             'stock' => 'sometimes|required|integer',
             'id_materia' => 'sometimes|required|exists:materias,id_materia',
+            'precio' => 'sometimes|required|numeric|min:0', // ✅ nuevo
         ]);
 
         $producto->update($request->all());

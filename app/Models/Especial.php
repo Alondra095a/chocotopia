@@ -4,17 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-
-class Chocolate extends Model
+class Especial extends Model
 {
-    use HasFactory;
-    protected $table = 'chocolates';
-    protected $primaryKey = 'id_chocolate';
+    use HasFactory, SoftDeletes;
+
+    protected $table = 'especiales';
+    protected $primaryKey = 'id_especial';
 
     protected $fillable = [
-        'relleno', 
-        'id_producto'
+        'descripcion',
+        'tipo',
+        'id_producto',
     ];
 
     public function producto()

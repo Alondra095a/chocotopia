@@ -17,6 +17,7 @@ class Producto extends Model
         'presentacion',
         'stock',
         'id_materia',
+        'precio', // ✅ lo nuevo
     ];
 
     protected $hidden = ['deleted_at'];
@@ -26,5 +27,6 @@ class Producto extends Model
         return $this->belongsTo(Materias::class, 'id_materia');
     }
 }
+
 
 

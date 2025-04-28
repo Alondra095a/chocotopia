@@ -9,6 +9,12 @@ use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\MateriasController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ChocolateController;
+use App\Http\Controllers\DulceController;
+use App\Http\Controllers\EspecialController;
+
+Route::resource('especiales', EspecialController::class);
+
+Route::resource('dulces', DulceController::class);
 
 Route::resource('chocolates', ChocolateController::class);
 

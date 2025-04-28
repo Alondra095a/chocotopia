@@ -10,7 +10,7 @@ class Chocolate extends Model
 {
     use HasFactory;
     protected $table = 'chocolates';
-    protected $primaryKey = 'id_chocolate';
+    protected $primaryKey = 'id_choc';
 
     protected $fillable = [
         'relleno', 

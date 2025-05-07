@@ -13,7 +13,9 @@
         <h1 class="bg-primary text-white p-4 rounded-top text-center" style="font-family: 'Fenix', serif; font-size: 2.5rem;">Lista de Pedidos</h1>
 
         <div class="text-end mb-3">
-            <a href="{{ route('pedidos.create') }}" class="btn btn-success shadow"><i class="fa-solid fa-plus-circle"></i> Nuevo Pedido</a>
+            <a href="{{ route('pedidos.create') }}" class="btn btn-success shadow">
+                <i class="fa-solid fa-plus-circle"></i> Nuevo Pedido
+            </a>
         </div>
 
         <div class="table-responsive">
@@ -25,6 +27,7 @@
                         <th>Monto</th>
                         <th>Descripción</th>
                         <th>Cliente</th>
+                        <th>Estado</th> 
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -35,9 +38,18 @@
                         <td>{{ $pedido->fecha }}</td>
                         <td>${{ number_format($pedido->monto, 2) }}</td>
                         <td>{{ $pedido->descripcion }}</td>
-                        <td>{{ $pedido->cliente->persona->nombre ?? 'Sin cliente' }}</td>
+                        <td>{{ $pedido->nombre_cliente ?? 'Sin cliente' }}</td>
                         <td>
-                            <a href="{{ route('pedidos.edit', $pedido->id_pedido) }}" class="btn btn-warning btn-sm shadow"><i class="fa-solid fa-edit"></i> Editar</a>
+                            @if ($pedido->estado == 'entregado')
+                                <span class="badge bg-success">{{ ucfirst($pedido->estado) }}</span>
+                            @else
+                                <span class="badge bg-warning text-dark">{{ ucfirst($pedido->estado) }}</span>
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{ route('pedidos.edit', $pedido->id_pedido) }}" class="btn btn-warning btn-sm shadow">
+                                <i class="fa-solid fa-edit"></i> Editar
+                            </a>
                             <form action="{{ route('pedidos.destroy', $pedido->id_pedido) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
@@ -53,7 +65,9 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="{{ route('home') }}" class="btn btn-secondary shadow"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+            <a href="{{ route('home') }}" class="btn btn-secondary shadow">
+                <i class="fa-solid fa-arrow-left"></i> Volver
+            </a>
         </div>
     </div>
 </div>

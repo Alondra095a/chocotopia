@@ -10,8 +10,18 @@ class MateriasController extends Controller
 {
     public function index()
     {
-        $materias = Materias::with('proveedor.persona')->get();
-        return view('materias.index', compact('materias'));
+        $materias = Materias::join('proveedores', 'materias.id_proveedor', '=', 'proveedores.id_proveedor')
+        ->join('personas', 'proveedores.id_persona', '=', 'personas.id_persona')
+        ->select(
+            'materias.id_materia',
+            'materias.nombre_materia',
+            'materias.cantidad',
+            'personas.nombre as nombre_proveedor',
+            'personas.telefono'
+        )
+        ->get();
+
+    return view('materias.index', compact('materias'));
     }
 
     public function create()

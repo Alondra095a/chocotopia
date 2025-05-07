@@ -34,7 +34,7 @@
                                 <td>{{ $materia->id_materia }}</td>
                                 <td>{{ $materia->nombre_materia }}</td>
                                 <td>{{ $materia->cantidad }}</td>
-                                <td>{{ $materia->proveedor->persona->nombre ?? 'Sin proveedor' }}</td>
+                                <td>{{ $materia->nombre_proveedor ?? 'Sin proveedor' }}</td>
                                 <td>
                                     <a href="{{ route('materias.edit', $materia->id_materia) }}" class="btn btn-warning btn-sm shadow"><i class="fa-solid fa-edit"></i> Editar</a>
                                     <form action="{{ route('materias.destroy', $materia->id_materia) }}" method="POST" class="d-inline">

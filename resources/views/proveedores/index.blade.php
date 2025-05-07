@@ -32,7 +32,7 @@
                             @foreach ($proveedores as $proveedor)
                             <tr class="text-center">
                                 <td>{{ $proveedor->id_proveedor }}</td>
-                                <td>{{ $proveedor->persona->nombre }}</td>
+                                <td>{{ $proveedor->nombre }}</td>
                                 <td>{{ $proveedor->tipo_materia }}</td>
                                 <td>{{ $proveedor->cantidad }}</td>
                                 <td>

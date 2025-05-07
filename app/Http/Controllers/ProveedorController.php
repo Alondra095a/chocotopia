@@ -10,8 +10,19 @@ class ProveedorController extends Controller
 {
     public function index()
     {
-        $proveedores = Proveedor::with('persona')->get();
-        return view('proveedores.index', compact('proveedores'));
+        $proveedores = Proveedor::join('personas', 'proveedores.id_persona', '=', 'personas.id_persona')
+        ->select(
+            'proveedores.id_proveedor',
+            'proveedores.tipo_materia',
+            'proveedores.cantidad',
+            'personas.nombre as nombre',
+            'personas.a_paterno',
+            'personas.a_materno',
+            'personas.telefono'
+        )
+        ->get();
+
+    return view('proveedores.index', compact('proveedores'));
     }
 
     public function create()

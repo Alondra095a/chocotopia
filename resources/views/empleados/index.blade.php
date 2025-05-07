@@ -34,7 +34,7 @@
                                 <td>{{ $empleado->id_empleado }}</td>
                                 <td>{{ $empleado->cargo }}</td>
                                 <td>{{ $empleado->turno }}</td>
-                                <td>{{ $empleado->persona->nombre }}</td>
+                                <td>{{ $empleado->nombre }}</td>
                                 <td>
                                     <a href="{{ route('empleados.edit', $empleado->id_empleado) }}" class="btn btn-warning btn-sm shadow"><i class="fa-solid fa-edit"></i> Editar</a>
                                     <form action="{{ route('empleados.destroy', $empleado->id_empleado) }}" method="POST" style="display:inline;">

@@ -10,8 +10,19 @@ class EmpleadoController extends Controller
 {
     public function index()
     {
-        $empleados = Empleado::with('persona')->get(); // Cargar empleados con su persona asociada
-        return view('empleados.index', compact('empleados'));
+        $empleados = Empleado::join('personas', 'empleados.id_persona', '=', 'personas.id_persona')
+        ->select(
+            'empleados.id_empleado',
+            'empleados.cargo',
+            'empleados.turno',
+            'personas.nombre as nombre',
+            'personas.a_paterno',
+            'personas.a_materno',
+            'personas.telefono'
+        )
+        ->get();
+
+    return view('empleados.index', compact('empleados'));
     }
 
     public function create()

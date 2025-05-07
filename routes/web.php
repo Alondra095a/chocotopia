@@ -11,6 +11,9 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ChocolateController;
 use App\Http\Controllers\DulceController;
 use App\Http\Controllers\EspecialController;
+use App\Http\Controllers\ProduccionController;
+
+Route::resource('producciones', ProduccionController::class);
 
 Route::resource('especiales', EspecialController::class);
 
@@ -31,6 +34,10 @@ Route::resource('pedidos', PedidosController::class);
 
 // Rutas para el CRUD de Personas
 Route::resource('personas', PersonasController::class);
+
+Route::get("configuracion", function () {
+    return view('configuracion');
+});
 
 Route::get('/', function () {
     return view('welcome');

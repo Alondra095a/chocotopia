@@ -90,9 +90,7 @@
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-cart-flatbed"></i> Producciones</h5>
             </div>
-            <div class="col p-3 card text-center shadow-sm bg-light rounded">
-                <h5 class="text-dark fw-bold"><i class="fa-solid fa-person-digging"></i> Maquinarias</h5>
-            </div>
+            
         </div>
     </div>
 
@@ -138,8 +136,8 @@
                 </button>
                 <ul class="dropdown-menu w-100" style="background-color: #d2b29e;">
                     <li><a class="dropdown-item" href="{{ route('materias.index') }}">Materias Primas</a></li>
-                    <li><a class="dropdown-item" href="#">Producciones</a></li>
-                    <li><a class="dropdown-item" href="#">Maquinarias</a></li>
+                    <li><a class="dropdown-item" href="{{ route('producciones.index')}}">Producciones</a></li>
+                   
                 </ul>
             </div>
         </div>

@@ -17,7 +17,7 @@ class Pedido extends Model
 
     // Permitir asignación masiva en estos campos
     protected $fillable = [
-        'fecha', 'monto', 'descripcion', 'id_cliente'
+        'fecha', 'monto', 'descripcion', 'id_cliente', 'estado'
     ];
 
     // Relación con el modelo Cliente

@@ -38,6 +38,15 @@
                     </select>
                 </div>
 
+                <!-- Estado -->
+                <div class="mb-3">
+                    <label for="estado" class="form-label fw-bold">Estado del Pedido</label>
+                    <select name="estado" id="estado" class="form-control shadow-sm" required>
+                        <option value="pendiente" selected>Pendiente</option>
+                        <option value="entregado">Entregado</option>
+                    </select>
+                </div>
+
                 <div class="d-flex justify-content-between">
                     <a href="{{ route('pedidos.index') }}" class="btn btn-secondary">Volver</a>
                     <button type="submit" class="btn btn-primary">Crear Pedido</button>

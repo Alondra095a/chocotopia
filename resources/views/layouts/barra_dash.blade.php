@@ -37,7 +37,7 @@
             </div>
 
             <div class="mt-4 border-top pt-4">
-                <h5 class="p-2"><a href="{{url('configuración')}}" class="btn text-decoration-none {{request()->routeIs('configuración')?'active_custom':''}} text-white"><i class="fa-solid fa-gear"></i> Configuración</a></h5>
+                <h5 class="p-2"><a href="{{url('configuracion')}}" class="btn text-decoration-none {{request()->routeIs('configuracion')?'active_custom':''}} text-white"><i class="fa-solid fa-gear"></i> Configuración</a></h5>
                 <h5 class="p-2">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

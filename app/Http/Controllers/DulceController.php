@@ -10,8 +10,17 @@ class DulceController extends Controller
 {
     public function index()
     {
-        $dulces = Dulce::with('producto')->get();
-        return view('dulces.index', compact('dulces'));
+        $dulces = Dulce::join('productos', 'dulces.id_producto', '=', 'productos.id_producto')
+        ->select(
+            'dulces.id_dulce',
+            'dulces.dureza',
+            'dulces.colorante',
+            'productos.nombre_producto as nombre_dulce',
+            'productos.precio'
+        )
+        ->get();
+
+    return view('dulces.index', compact('dulces'));
     }
 
     public function create()

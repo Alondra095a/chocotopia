@@ -41,9 +41,9 @@
                         <td>{{ $dulce->id_dulce }}</td>
                         <td>{{ $dulce->dureza }}</td>
                         <td>{{ $dulce->colorante }}</td>
-                        <td>{{ $dulce->producto->nombre_producto ?? 'N/A' }}</td>
+                        <td>{{ $dulce->nombre_dulce ?? 'N/A' }}</td>
                         <td>
-                            ${{ number_format($dulce->producto->precio ?? 0, 2) }}
+                            ${{ number_format($dulce->precio ?? 0, 2) }}
                         </td>
                         <td>
                             <a href="{{ route('dulces.edit', $dulce->id_dulce) }}" class="btn btn-warning btn-sm shadow">

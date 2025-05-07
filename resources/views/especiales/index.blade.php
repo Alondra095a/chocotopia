@@ -40,8 +40,8 @@
                         <td>{{ $especial->id_especial }}</td>
                         <td>{{ $especial->descripcion }}</td>
                         <td>{{ $especial->tipo }}</td>
-                        <td>{{ $especial->producto->nombre_producto ?? 'N/A' }}</td>
-                        <td>${{ number_format($especial->producto->precio ?? 0, 2) }}</td>
+                        <td>{{ $especial->nombre_producto ?? 'N/A' }}</td>
+                        <td>${{ number_format($especial->precio ?? 0, 2) }}</td>
                         <td>
                             <a href="{{ route('especiales.edit', $especial->id_especial) }}" class="btn btn-warning btn-sm shadow">
                                 <i class="fa-solid fa-pen-to-square"></i> Editar

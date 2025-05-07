@@ -10,8 +10,18 @@ class EspecialController extends Controller
 {
     public function index()
     {
-        $especiales = Especial::with('producto')->get();
-        return view('especiales.index', compact('especiales'));
+        $especiales = Especial::join('productos', 'especiales.id_producto', '=', 'productos.id_producto')
+        ->select(
+            'especiales.id_especial',
+            'especiales.descripcion',
+            'especiales.tipo',
+            'productos.nombre_producto as nombre_producto',
+            'productos.precio'
+        )
+        ->get();
+
+    return view('especiales.index', compact('especiales'));
+    
     }
 
     public function create()

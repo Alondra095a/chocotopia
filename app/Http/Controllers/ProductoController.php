@@ -10,8 +10,19 @@ class ProductoController extends Controller
 {
     public function index()
     {
-        $productos = Producto::whereNull('deleted_at')->with('materia')->get();
-        return view('productos.index', compact('productos'));
+        $productos = Producto::join('materias', 'productos.id_materia', '=', 'materias.id_materia')
+        ->whereNull('productos.deleted_at')
+        ->select(
+            'productos.id_producto',
+            'productos.nombre_producto',
+            'productos.presentacion',
+            'productos.stock',
+            'productos.precio',
+            'materias.nombre_materia as materia'
+        )
+        ->get();
+
+    return view('productos.index', compact('productos'));
     }
 
     public function create()

@@ -25,7 +25,7 @@
                         <th>Nombre del Producto</th>
                         <th>Presentación</th>
                         <th>Stock</th>
-                        <th>Precio</th> {{-- ✅ NUEVA COLUMNA --}}
+                        <th>Precio</th> 
                         <th>Materia Prima</th>
                         <th>Acciones</th>
                     </tr>
@@ -37,8 +37,8 @@
                         <td>{{ $producto->nombre_producto }}</td>
                         <td>{{ $producto->presentacion }}</td>
                         <td>{{ $producto->stock }}</td>
-                        <td>${{ number_format($producto->precio, 2) }}</td> {{-- ✅ PRECIO FORMATEADO --}}
-                        <td>{{ $producto->materia->nombre_materia ?? 'No definida' }}</td>
+                        <td>${{ number_format($producto->precio, 2) }}</td> 
+                        <td>{{ $producto->materia ?? 'No definida' }}</td>
                         <td>
                             <a href="{{ route('productos.edit', $producto->id_producto) }}" class="btn btn-warning btn-sm shadow">
                                 <i class="fa-solid fa-edit"></i> Editar

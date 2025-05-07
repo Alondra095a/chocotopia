@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container-fluid bg-light p-4">
-    <!-- Mostrar el mensaje de éxito si está presente -->
     @if(session('success'))
     <div class="alert text-center" style="background-color: rgb(39, 26, 7); color: white; font-family: 'Fenix', serif; font-size: 1.5rem;">
         {{ session('success') }}
@@ -25,7 +24,7 @@
                         <th>ID</th>
                         <th>Relleno</th>
                         <th>Producto</th>
-                        <th>Precio</th> <!-- ✅ NUEVA COLUMNA -->
+                        <th>Precio</th> 
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -34,9 +33,9 @@
                     <tr class="text-center">
                         <td>{{ $choc->id_chocolate }}</td>
                         <td>{{ $choc->relleno }}</td>
-                        <td>{{ $choc->producto->nombre_producto ?? 'N/A' }}</td>
+                        <td>{{ $choc->nombre_producto ?? 'N/A' }}</td>
                         <td>
-                            ${{ number_format($choc->producto->precio ?? 0, 2) }}
+                            ${{ number_format($choc->precio ?? 0, 2) }}
                         </td>
                         <td>
                             <a href="{{ route('chocolates.edit', $choc->id_chocolate) }}" class="btn btn-warning btn-sm shadow">
@@ -68,4 +67,3 @@
     </div>
 </div>
 @endsection
- 

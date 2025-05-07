@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Chocolate;
 use App\Models\Producto;
-use Illuminate\Http\Request;
 
 class ChocolateController extends Controller
 {
     public function index()
     {
-        $chocolates = Chocolate::with('producto')->get();
-        return view('chocolates.index', compact('chocolates'));
+        $chocolates = Chocolate::join('productos', 'chocolates.id_producto', '=', 'productos.id_producto')
+        ->select(
+            'chocolates.id_chocolate',
+            'chocolates.relleno',
+            'productos.nombre_producto as nombre_producto',
+            'productos.precio as precio'
+        )
+        ->get();
+
+    return view('chocolates.index', compact('chocolates'));
     }
 
     public function create()
@@ -28,7 +36,7 @@ class ChocolateController extends Controller
         ]);
 
         Chocolate::create($request->all());
-        return redirect()->route('chocolates.index')->with('success','Chocolate creado con éxito');
+        return redirect()->route('chocolates.index')->with('success', 'Chocolate creado con éxito');
     }
 
     public function edit($id)

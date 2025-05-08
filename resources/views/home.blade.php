@@ -12,15 +12,15 @@
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-boxes-stacked"></i> Stock de productos</h5>
                 <ul class="list-unstyled mt-2 text-start" style="font-size: 0.9rem;">
                 <ul class="list-unstyled mt-2 text-start small" style="font-family: 'Tahoma';">
-    @foreach($productos as $producto)
-        @php
-            $alerta = $producto->stock < 20 ? 'text-danger' : '';
-        @endphp
-        <li class="{{ $alerta }}">
-            {{ $producto->nombre_producto }}: <strong>{{ $producto->stock }}</strong> unidades
-        </li>
-    @endforeach
-</ul>
+                @foreach($productos as $producto)
+                    @php
+                        $alerta = $producto->stock < 20 ? 'text-danger' : '';
+                    @endphp
+                    <li class="{{ $alerta }}">
+                        {{ $producto->nombre_producto }}: <strong>{{ $producto->stock }}</strong> unidades
+                    </li>
+                @endforeach
+                </ul>
             </div>
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-dollar-sign"></i> Total ventas</h5>
@@ -28,6 +28,13 @@
             </div>
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-box-open"></i> Pedidos pendientes</h5>
+                <ul class="list-unstyled mt-2">
+            @forelse($pedidosPendientes as $pedido)
+                <li><strong>#{{ $pedido->id_pedido }}</strong> — {{ $pedido->descripcion ?? 'Sin descripción' }}</li>
+            @empty
+                <li class="text-muted">No hay pedidos pendientes</li>
+            @endforelse
+        </ul>
             </div>
         </div>
 
@@ -73,12 +80,29 @@
         <div class="row gap-3">
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-person"></i> <i class="fa-solid fa-person-dress"></i> Clientes</h5>
+                    <ul class="list-unstyled mt-2 text-start small">
+                    @foreach($clientes as $c)
+                    <li>{{ $c->nombre }} {{ $c->a_paterno }} {{ $c->a_materno }}</li>
+                    @endforeach
+                    </ul>
             </div>
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-people-group"></i> Empleados</h5>
+                <ul class="list-unstyled mt-2 text-start small">
+                    @foreach($empleados as $e)
+                    <li>{{ $e->nombre }} {{ $e->a_paterno }} {{ $e->a_materno }}</li>
+                    @endforeach
+                </ul>
+
             </div>
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-truck-moving"></i> Proveedores</h5>
+                <ul class="list-unstyled mt-2 text-start small">
+                    @foreach($proveedores as $p)
+                     <li>{{ $p->nombre }} {{ $p->a_paterno }} {{ $p->a_materno }}</li>
+                    @endforeach
+                </ul>
+
             </div>
         </div>
 
@@ -86,9 +110,21 @@
         <div class="row gap-3">
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-cube"></i> Materias Primas</h5>
+                <ul class="list-unstyled mt-2 text-start small">
+                    @foreach($materias as $m)
+                    <li>{{ $m->nombre_materia }} — <strong>{{ $m->cantidad }}</strong> unidades</li>
+                    @endforeach
+                </ul>
+
             </div>
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-cart-flatbed"></i> Producciones</h5>
+                <ul class="list-unstyled mt-2 text-start small">
+                    @foreach($producciones as $prod)
+                    <li>{{ $prod->nombre_producto }} ({{ $prod->fecha }}) — <strong>{{ $prod->cantidad }}</strong></li>
+                    @endforeach
+                </ul>
+
             </div>
             
         </div>

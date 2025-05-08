@@ -30,7 +30,7 @@
             </div>
 
             <div class="mt-4">
-                <h5 class="p-2"><a href="{{url('ventas')}}" class="btn text-decoration-none {{request()->routeIs('ventas')?'active_custom':''}} text-white"><i class="fa-solid fa-cart-shopping"></i> Ventas</a></h5>
+                <h5 class="p-2"><a href="{{route('ventas.index')}}" class="btn text-decoration-none {{request()->routeIs('ventas.index')?'active_custom':''}} text-white"><i class="fa-solid fa-cart-shopping"></i> Ventas</a></h5>
                 <h5 class="p-2"><a href="{{route('productos.index')}}" class="btn text-decoration-none {{request()->routeIs('productos.index')?'active_custom':''}} text-white"><i class="fa-solid fa-barcode"></i> Productos</a></h5>
                 <h5 class="p-2"><a href="{{ route('pedidos.index') }}" class="btn text-decoration-none {{ request()->routeIs('pedidos.index') ? 'active_custom' : '' }} text-white"><i class="fa-solid fa-box"></i> Pedidos</a></h5>
                 <h5 class="p-2"><a href="{{ route('personas.index') }}" class="btn text-decoration-none {{ request()->routeIs('personas.index') ? 'active_custom' : '' }} text-white"><i class="fa-solid fa-users"></i> Personas</a></h5>

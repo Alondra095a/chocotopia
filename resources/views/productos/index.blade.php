@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 @extends('layouts.barra_dash')
 
 @section('content')
@@ -24,23 +22,33 @@
                 <thead class="bg-primary text-white text-center">
                     <tr>
                         <th>ID</th>
-                        <th>Nombre del Producto</th>
+                        <th>Nombre</th>
                         <th>Presentación</th>
                         <th>Stock</th>
-                        <th>Precio</th> 
+                        <th>Precio</th>
                         <th>Materia Prima</th>
+                        <th>Descripción</th>
+                        <th>Imagen</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($productos as $producto)
-                    <tr class="text-center">
+                    <tr class="text-center align-middle">
                         <td>{{ $producto->id_producto }}</td>
                         <td>{{ $producto->nombre_producto }}</td>
                         <td>{{ $producto->presentacion }}</td>
                         <td>{{ $producto->stock }}</td>
-                        <td>${{ number_format($producto->precio, 2) }}</td> 
+                        <td>${{ number_format($producto->precio, 2) }}</td>
                         <td>{{ $producto->materia ?? 'No definida' }}</td>
+                        <td style="max-width: 200px;">{{ $producto->descripcion ?? 'Sin descripción' }}</td>
+                        <td>
+                            @if ($producto->imagen)
+                                <img src="{{ asset('storage/' . $producto->imagen) }}" alt="Imagen" width="60" class="img-thumbnail">
+                            @else
+                                <span class="text-muted">Sin imagen</span>
+                            @endif
+                        </td>
                         <td>
                             <a href="{{ route('productos.edit', $producto->id_producto) }}" class="btn btn-warning btn-sm shadow">
                                 <i class="fa-solid fa-edit"></i> Editar
@@ -56,7 +64,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="7" class="text-center">No hay productos registrados.</td>
+                        <td colspan="9" class="text-center">No hay productos registrados.</td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -71,4 +79,3 @@
     </div>
 </div>
 @endsection
->>>>>>> 9da4b99e490aa56f894f0e5eb7cbebe3ecd37fe2

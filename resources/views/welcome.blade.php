@@ -76,37 +76,43 @@
     </section>
     
     <section id="products" class="container text-center my-5">
-        <h2 class="mb-4 bg-primary p-2 mb-4 text-white">Nuestros Productos</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ asset('img/choc.jpeg') }}" class="card-img-top" alt="chocolate" style="height: 450px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">Dulce de Chocolate</h5>
-                        <p class="card-text">Los mejores dulces con un toque especial de cacao premium.</p>
+    <h2 class="mb-4 bg-primary p-2 mb-4 text-white">Nuestros Productos</h2>
+
+    <div id="carouselProductos" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @foreach($productos->chunk(3) as $chunkIndex => $chunk)
+            <div class="carousel-item {{ $chunkIndex == 0 ? 'active' : '' }}">
+                <div class="row justify-content-center">
+                    @foreach($chunk as $producto)
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow">
+                            @if($producto->imagen)
+                                <img src="{{ asset('storage/' . $producto->imagen) }}" class="card-img-top" alt="{{ $producto->nombre_producto }}" style="height: 300px; object-fit: cover;">
+                            @else
+                                <img src="{{ asset('img/sin_imagen.jpg') }}" class="card-img-top" alt="Sin imagen" style="height: 300px; object-fit: cover;">
+                            @endif
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $producto->nombre_producto }}</h5>
+                                <p class="card-text">{{ $producto->descripcion ?? 'Sin descripción' }}</p>
+                            </div>
+                        </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ asset('img/chili.jpeg') }}" class="card-img-top" alt="chocolate bar" style="height: 450px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">Chili-Gomi</h5>
-                        <p class="card-text">Deliciosas gomitas con chamoy con acidito sabroso y piquin del bueno.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ asset('img/dulcesv.jpeg') }}" class="card-img-top" alt="chocolate truffles" style="height: 450px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">Dulces Variados</h5>
-                        <p class="card-text">Exquisitos dulces de cualquier tipo que tu imaginación desee.</p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
-    </section>
+
+        <!-- Controles -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductos" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselProductos" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</section>
+
 
     <!-- Nueva sección para las promociones -->
     <section id="promotions" class="container text-center my-5">

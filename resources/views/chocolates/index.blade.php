@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 @extends('layouts.barra_dash')
 
 @section('content')
@@ -69,4 +67,3 @@
     </div>
 </div>
 @endsection
->>>>>>> 9da4b99e490aa56f894f0e5eb7cbebe3ecd37fe2

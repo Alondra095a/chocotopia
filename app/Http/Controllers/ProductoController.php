@@ -11,18 +11,20 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::join('materias', 'productos.id_materia', '=', 'materias.id_materia')
-        ->whereNull('productos.deleted_at')
-        ->select(
-            'productos.id_producto',
-            'productos.nombre_producto',
-            'productos.presentacion',
-            'productos.stock',
-            'productos.precio',
-            'materias.nombre_materia as materia'
-        )
-        ->get();
+            ->whereNull('productos.deleted_at')
+            ->select(
+                'productos.id_producto',
+                'productos.nombre_producto',
+                'productos.presentacion',
+                'productos.stock',
+                'productos.precio',
+                'productos.descripcion',
+                'productos.imagen',
+                'materias.nombre_materia as materia'
+            )
+            ->get();
 
-    return view('productos.index', compact('productos'));
+        return view('productos.index', compact('productos'));
     }
 
     public function create()
@@ -32,19 +34,36 @@ class ProductoController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'nombre_producto' => 'required|string|max:255',
-            'presentacion' => 'nullable|string|max:255',
-            'stock' => 'required|integer',
-            'id_materia' => 'required|exists:materias,id_materia',
-            'precio' => 'required|numeric|min:0', // ✅ nuevo
-        ]);
+{
+    $request->validate([
+        'nombre_producto' => 'required|string|max:255',
+        'presentacion' => 'nullable|string|max:255',
+        'stock' => 'required|integer',
+        'id_materia' => 'required|exists:materias,id_materia',
+        'precio' => 'required|numeric|min:0',
+        'descripcion' => 'nullable|string',
+        'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
 
-        Producto::create($request->all());
+    $rutaImagen = null;
 
-        return redirect()->route('productos.index')->with('success', 'Producto creado correctamente.');
+    if ($request->hasFile('imagen')) {
+        $rutaImagen = $request->file('imagen')->store('productos', 'public');
     }
+
+    Producto::create([
+        'nombre_producto' => $request->nombre_producto,
+        'presentacion' => $request->presentacion,
+        'stock' => $request->stock,
+        'id_materia' => $request->id_materia,
+        'precio' => $request->precio,
+        'descripcion' => $request->descripcion,
+        'imagen' => $rutaImagen,
+    ]);
+
+    return redirect()->route('productos.index')->with('success', 'Producto creado correctamente.');
+}
+
 
     public function show($id)
     {
@@ -73,14 +92,24 @@ class ProductoController extends Controller
             ->firstOrFail();
 
         $request->validate([
-            'nombre_producto' => 'sometimes|required|string|max:255',
+            'nombre_producto' => 'required|string|max:255',
             'presentacion' => 'nullable|string|max:255',
-            'stock' => 'sometimes|required|integer',
-            'id_materia' => 'sometimes|required|exists:materias,id_materia',
-            'precio' => 'sometimes|required|numeric|min:0', // ✅ nuevo
+            'stock' => 'required|integer',
+            'id_materia' => 'required|exists:materias,id_materia',
+            'precio' => 'required|numeric|min:0',
+            'descripcion' => 'nullable|string',
+            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $producto->update($request->all());
+        $datos = $request->only([
+            'nombre_producto', 'presentacion', 'stock', 'id_materia', 'precio', 'descripcion'
+        ]);
+
+        if ($request->hasFile('imagen')) {
+            $datos['imagen'] = $request->file('imagen')->store('productos', 'public');
+        }
+
+        $producto->update($datos);
 
         return redirect()->route('productos.index')->with('success', 'Producto actualizado correctamente.');
     }

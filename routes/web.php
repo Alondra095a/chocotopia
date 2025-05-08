@@ -12,6 +12,9 @@ use App\Http\Controllers\ChocolateController;
 use App\Http\Controllers\DulceController;
 use App\Http\Controllers\EspecialController;
 use App\Http\Controllers\ProduccionController;
+use App\Http\Controllers\VentaController;
+
+Route::resource('ventas', VentaController::class);
 
 Route::resource('producciones', ProduccionController::class);
 
@@ -39,9 +42,9 @@ Route::get("configuracion", function () {
     return view('configuracion');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\LandingController;
+
+Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 Auth::routes();
 

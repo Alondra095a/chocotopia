@@ -16,7 +16,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('productos.store') }}" method="POST">
+            <form action="{{ route('productos.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-3">
@@ -49,6 +49,18 @@
                             </option>
                         @endforeach
                     </select>
+                </div>
+
+                {{-- Campo para descripción --}}
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label fw-bold">Descripción</label>
+                    <textarea name="descripcion" id="descripcion" rows="3" class="form-control shadow-sm">{{ old('descripcion') }}</textarea>
+                </div>
+
+                {{-- Campo para imagen --}}
+                <div class="mb-3">
+                    <label for="imagen" class="form-label fw-bold">Imagen del producto:</label>
+                    <input type="file" name="imagen" class="form-control shadow-sm" accept="image/*">
                 </div>
 
                 <div class="d-flex justify-content-between mt-4">

@@ -16,7 +16,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('productos.update', $producto->id_producto) }}" method="POST">
+            <form action="{{ route('productos.update', $producto->id_producto) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -50,6 +50,23 @@
                             </option>
                         @endforeach
                     </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label fw-bold">Descripción</label>
+                    <textarea name="descripcion" id="descripcion" rows="3" class="form-control shadow-sm">{{ old('descripcion', $producto->descripcion) }}</textarea>
+                </div>
+
+                @if($producto->imagen)
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Imagen actual:</label><br>
+                    <img src="{{ asset('storage/' . $producto->imagen) }}" alt="Imagen actual" width="150" class="img-thumbnail">
+                </div>
+                @endif
+
+                <div class="mb-3">
+                    <label for="imagen" class="form-label fw-bold">Cambiar imagen:</label>
+                    <input type="file" name="imagen" class="form-control shadow-sm" accept="image/*">
                 </div>
 
                 <div class="d-flex justify-content-between mt-4">

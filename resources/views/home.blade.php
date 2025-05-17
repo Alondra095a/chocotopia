@@ -10,31 +10,30 @@
         <div class="row gap-3">
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-boxes-stacked"></i> Stock de productos</h5>
-                <ul class="list-unstyled mt-2 text-start" style="font-size: 0.9rem;">
                 <ul class="list-unstyled mt-2 text-start small" style="font-family: 'Tahoma';">
-                @foreach($productos as $producto)
-                    @php
-                        $alerta = $producto->stock < 20 ? 'text-danger' : '';
-                    @endphp
-                    <li class="{{ $alerta }}">
-                        {{ $producto->nombre_producto }}: <strong>{{ $producto->stock }}</strong> unidades
-                    </li>
-                @endforeach
+                    @foreach($productos as $producto)
+                        @php
+                            $alerta = $producto->stock < 20 ? 'text-danger' : '';
+                        @endphp
+                        <li class="{{ $alerta }}">
+                            {{ $producto->nombre_producto }}: <strong>{{ $producto->stock }}</strong> unidades
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-dollar-sign"></i> Total ventas</h5>
-                
+                <p class="card-text fw-bold">${{ number_format($totalVentas, 2) }}</p>
             </div>
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-box-open"></i> Pedidos pendientes</h5>
                 <ul class="list-unstyled mt-2">
-            @forelse($pedidosPendientes as $pedido)
-                <li><strong>#{{ $pedido->id_pedido }}</strong> — {{ $pedido->descripcion ?? 'Sin descripción' }}</li>
-            @empty
-                <li class="text-muted">No hay pedidos pendientes</li>
-            @endforelse
-        </ul>
+                    @forelse($pedidosPendientes as $pedido)
+                        <li><strong>#{{ $pedido->id_pedido }}</strong> — {{ $pedido->descripcion ?? 'Sin descripción' }}</li>
+                    @empty
+                        <li class="text-muted">No hay pedidos pendientes</li>
+                    @endforelse
+                </ul>
             </div>
         </div>
 
@@ -42,37 +41,27 @@
         <div class="row gap-3">
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-gift"></i> Chocolates</h5>
-                <ul class="list-unstyled mt-2 text-start small" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-        @foreach($chocolates as $choc)
-            <li>
-                {{ $choc->relleno }} — 
-                <strong>${{ number_format($choc->producto->precio ?? 0, 2) }}</strong>
-            </li>
-        @endforeach
-    </ul>
+                <ul class="list-unstyled mt-2 text-start small">
+                    @foreach($chocolates as $choc)
+                        <li>{{ $choc->relleno }} — <strong>${{ number_format($choc->producto->precio ?? 0, 2) }}</strong></li>
+                    @endforeach
+                </ul>
             </div>
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-candy-cane"></i> Dulces</h5>
-                <ul class="list-unstyled mt-2 text-start small" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-        @foreach($dulces as $dulce)
-            <li>
-                {{ $dulce->producto->nombre_producto ?? 'N/A' }} —
-                <strong>${{ number_format($dulce->producto->precio ?? 0, 2) }}</strong>
-            </li>
-        @endforeach
-    </ul>
+                <ul class="list-unstyled mt-2 text-start small">
+                    @foreach($dulces as $dulce)
+                        <li>{{ $dulce->producto->nombre_producto ?? 'N/A' }} — <strong>${{ number_format($dulce->producto->precio ?? 0, 2) }}</strong></li>
+                    @endforeach
+                </ul>
             </div>
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-star"></i> Especiales</h5>
-                <ul class="list-unstyled mt-2 text-start small" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-        @foreach($especiales as $esp)
-            <li>
-                {{ $esp->producto->nombre_producto ?? 'N/A' }} —
-                
-                <strong>${{ number_format($esp->producto->precio ?? 0, 2) }}</strong>
-            </li>
-        @endforeach
-    </ul>
+                <ul class="list-unstyled mt-2 text-start small">
+                    @foreach($especiales as $esp)
+                        <li>{{ $esp->producto->nombre_producto ?? 'N/A' }} — <strong>${{ number_format($esp->producto->precio ?? 0, 2) }}</strong></li>
+                    @endforeach
+                </ul>
             </div>
         </div>
 
@@ -80,29 +69,27 @@
         <div class="row gap-3">
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-person"></i> <i class="fa-solid fa-person-dress"></i> Clientes</h5>
-                    <ul class="list-unstyled mt-2 text-start small">
+                <ul class="list-unstyled mt-2 text-start small">
                     @foreach($clientes as $c)
-                    <li>{{ $c->nombre }} {{ $c->a_paterno }} {{ $c->a_materno }}</li>
+                        <li>{{ $c->nombre }} {{ $c->a_paterno }} {{ $c->a_materno }}</li>
                     @endforeach
-                    </ul>
+                </ul>
             </div>
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-people-group"></i> Empleados</h5>
                 <ul class="list-unstyled mt-2 text-start small">
                     @foreach($empleados as $e)
-                    <li>{{ $e->nombre }} {{ $e->a_paterno }} {{ $e->a_materno }}</li>
+                        <li>{{ $e->nombre }} {{ $e->a_paterno }} {{ $e->a_materno }}</li>
                     @endforeach
                 </ul>
-
             </div>
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-truck-moving"></i> Proveedores</h5>
                 <ul class="list-unstyled mt-2 text-start small">
                     @foreach($proveedores as $p)
-                     <li>{{ $p->nombre }} {{ $p->a_paterno }} {{ $p->a_materno }}</li>
+                        <li>{{ $p->nombre }} {{ $p->a_paterno }} {{ $p->a_materno }}</li>
                     @endforeach
                 </ul>
-
             </div>
         </div>
 
@@ -112,21 +99,28 @@
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-cube"></i> Materias Primas</h5>
                 <ul class="list-unstyled mt-2 text-start small">
                     @foreach($materias as $m)
-                    <li>{{ $m->nombre_materia }} — <strong>{{ $m->cantidad }}</strong> unidades</li>
+                        <li>{{ $m->nombre_materia }} — <strong>{{ $m->cantidad }}</strong> unidades</li>
                     @endforeach
                 </ul>
-
             </div>
             <div class="col p-3 card text-center shadow-sm bg-light rounded">
                 <h5 class="text-dark fw-bold"><i class="fa-solid fa-cart-flatbed"></i> Producciones</h5>
                 <ul class="list-unstyled mt-2 text-start small">
                     @foreach($producciones as $prod)
-                    <li>{{ $prod->nombre_producto }} ({{ $prod->fecha }}) — <strong>{{ $prod->cantidad }}</strong></li>
+                        <li>{{ $prod->nombre_producto }} ({{ $prod->fecha }}) — <strong>{{ $prod->cantidad }}</strong></li>
                     @endforeach
                 </ul>
-
             </div>
-            
+            <div class="col p-3 card text-center shadow-sm bg-light rounded">
+                <h5 class="text-dark fw-bold"><i class="fa-solid fa-gift"></i> Promociones</h5>
+                <ul class="list-unstyled mt-2 text-start small">
+                    @forelse($promosDashboard as $promo)
+            <li>{{ $promo->titulo }}</li>
+        @empty
+            <li class="text-muted">Sin promociones activas</li>
+        @endforelse
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -172,8 +166,8 @@
                 </button>
                 <ul class="dropdown-menu w-100" style="background-color: #d2b29e;">
                     <li><a class="dropdown-item" href="{{ route('materias.index') }}">Materias Primas</a></li>
-                    <li><a class="dropdown-item" href="{{ route('producciones.index')}}">Producciones</a></li>
-                   
+                    <li><a class="dropdown-item" href="{{ route('producciones.index') }}">Producciones</a></li>
+                    <li><a class="dropdown-item" href="{{ route('promociones.index') }}">Promociones</a></li>
                 </ul>
             </div>
         </div>

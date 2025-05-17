@@ -59,6 +59,9 @@
             <a href="{{ route('home') }}" class="btn btn-secondary shadow">
                 <i class="fa-solid fa-arrow-left"></i> Volver
             </a>
+            <a href="{{ route('personas.create') }}" class="btn btn-secondary float-end ms-2">
+                     Agregar Persona
+                    </a>
         </div>
     </div>
 </div>

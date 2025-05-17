@@ -114,39 +114,34 @@
 </section>
 
 
-    <!-- Nueva sección para las promociones -->
-    <section id="promotions" class="container text-center my-5">
-        <h2 class="mb-4 bg-custom-color p-2">Promociones</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ asset('img/de.png') }}" class="card-img-top" alt="promocion 1" style="height: 450px; object-fit: cover;">
+    <!-- Nueva sección para las promociones dinámicas -->
+<section id="promotions" class="container text-center my-5">
+    <h2 class="mb-4 bg-primary p-2 text-white">Promociones</h2>
+    <div class="row">
+        @forelse($promociones as $promo)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    @if($promo->imagen_producto)
+                        <img src="{{ asset('storage/' . $promo->imagen_producto) }}" class="card-img-top" alt="{{ $promo->titulo }}" style="height: 450px; object-fit: cover;">
+                    @else
+                        <img src="{{ asset('img/sin_imagen.jpg') }}" class="card-img-top" alt="Sin imagen" style="height: 450px; object-fit: cover;">
+                    @endif
+
                     <div class="card-body">
-                        <h5 class="card-title">Pomo 1: Chocolates "Diamante"</h5>
-                        <p class="card-text">Compra uno y lleva otro gratis. Solo por tiempo limitado.</p>
+                        <h5 class="card-title">{{ $promo->titulo }}</h5>
+                        <p class="card-text">{{ $promo->descripcion }}</p>
+                        <small class="text-muted">Válida del {{ $promo->fecha_inicio }} al {{ $promo->fecha_fin }}</small>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ asset('img/pc.jpeg') }}" class="card-img-top" alt="promocion 2" style="height: 450px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">Promo 2: Trufas de cocoa blanca</h5>
-                        <p class="card-text">20% de descuento en las trufas de cocoa,  en la compra de $1500 pesos en chocolateria.</p>
-                    </div>
-                </div>
+        @empty
+            <div class="col-12">
+                <p class="text-muted">No hay promociones activas en este momento.</p>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ asset('img/tv.jpeg') }}" class="card-img-top" alt="promocion 3" style="height: 450px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">Promo 3: Trufa roja</h5>
-                        <p class="card-text">Llévate un paquete especial al 50% de descuento hasta el mes de Mayo.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        @endforelse
+    </div>
+</section>
+
     
     <section id="contact" class="container text-center my-5">
         <h2 class="bg-primary text-white text-center py-3">Contacto</h2>

@@ -69,6 +69,9 @@
             <a href="{{ route('home') }}" class="btn btn-secondary shadow">
                 <i class="fa-solid fa-arrow-left"></i> Volver
             </a>
+            <a href="{{ route('productos.create') }}" class="btn btn-secondary float-end ms-2">
+                 Dar de Alta producto
+             </a>
         </div>
     </div>
 </div>

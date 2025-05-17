@@ -13,6 +13,9 @@ use App\Http\Controllers\DulceController;
 use App\Http\Controllers\EspecialController;
 use App\Http\Controllers\ProduccionController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\PromocionController;
+
+Route::resource('promociones', PromocionController::class);
 
 Route::resource('ventas', VentaController::class);
 
